@@ -12,8 +12,14 @@ var changeClass = function(cng, old, newClass){
 // game loop
 var gameloop = function(){
   // pick a random word
-  var rand = quicklist[Math.floor(Math.random() * quicklist.length)].toUpperCase();
-  rand = "LOGRE"
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth();
+var yyyy = today.getFullYear();
+var rand = quicklist[Math.floor(random(yyyy/dd+mm) * quicklist.length)].toUpperCase();
+  
+  
+
   var hasDuplicates = (/([a-zA-Z]).*?\1/).test(rand); // if multiple insances of a letter in the word
   
   var pressn = 1; // turn number
@@ -114,6 +120,11 @@ var gameloop = function(){
 } //gameloop
 
 // endgame
+
+function random(seed) {
+  var x = Math.sin(seed++) * 10000; 
+  return x - Math.floor(x);
+}
 var end = function(msg, smallmsg,result,row){
   var utc = new Date().toJSON().slice(0,10).replace(/-/g,'/');
   
