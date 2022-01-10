@@ -1,0 +1,114 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+  background: white;
+}
+
+.invisible {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+#button1{
+    position: absolute;
+    left: 720px;
+    top: 400px;
+    background: white;
+    border: 1px solid black;
+}
+
+button {
+  margin: auto;
+  background: white;
+  border: 1px solid black;
+  padding: 10px 15px;
+  font-size: 20px;
+}
+
+
+
+button:hover {
+  background-color: green;
+  color: white;
+}
+
+#msgBox {
+  text-align: center;
+  font-size: 2.5em;
+  font-family: 'Helvetica', sans-serif;
+  margin: 0.1em 0em;
+  position: relative;
+  left: 0% ;
+  margin-left:-58px; 
+}
+
+@media screen and (max-width: 480px) {
+  #msgBox {
+    font-size: 0.5em;
+  }
+}
+
+#smallMsg {
+  text-align: center;
+  padding: 0px 0px 10px 0px;
+  font-family: 'Helvetica', sans-serif;
+  font-size: 1.1em;
+  position: relative;
+  left: 0% ;
+  margin-left:-58px; 
+}
+
+#guess {
+  border: 1px black solid;
+  padding: 10px;
+  margin: 10px auto;
+  display: block;
+  position: relative;
+  left: 0% ;
+  margin-left:471px;
+  text-align: center;
+  font-size:14px;
+  
+  
+}
+
+#container {
+  margin: auto;
+  width: 23em;
+}
+
+.correct {
+  background: rgb(109, 206, 109);
+}
+
+.wrongplace {
+  background: rgb(228, 228, 113);
+}
+
+.default {
+  background: #bdbdb8;
+}
+
+.square {
+  vertical-align:top;
+  margin-top: 4px;
+  border: 1px black solid;
+  border-radius: 5px;
+  display: inline-block;
+  height: 1.25em;
+  width: 1.25em;
+  text-align: center;
+  font-size: 2.5em;
+  font-family: 'Lato', sans-serif;
+}
+
+.center-block {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
