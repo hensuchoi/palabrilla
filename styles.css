@@ -109,3 +109,7 @@ button:hover {
   margin-right: auto;
   margin-left: auto;
 }
+
+select{
+  font-size: 50px;
+  }
