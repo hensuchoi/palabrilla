@@ -4,6 +4,7 @@
 
 body {
   background: white;
+  
 }
 
 .invisible {
@@ -77,6 +78,7 @@ button:hover {
   display: flex;
   flex-direction:column;
   justify-content: center;
+  
 }
 
 .correct {

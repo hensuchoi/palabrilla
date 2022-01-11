@@ -49,16 +49,7 @@ var rand = quicklist[Math.floor(random(yyyy/dd+mm) * quicklist.length)].toUpperC
       var childDivs = document.getElementById(current).getElementsByTagName('div');
       var c = 0; // correct count
       
-      // If not right number of letters
-      //if(guess.length !== 5){
-       // document.getElementById('smallMsg').innerHTML = "Guesses must be 5 letters!";
-      // if(pressn===6){
-        //  end("Palabrilla: " + rand);
-      //  }
-        //pressn++;
-       // document.getElementById(current).firstElementChild.innerHTML=rand[0];
-      //  return; // move down
-     // }
+      
 
       // check for correctness
       for(var i=0; i<childDivs.length; i++) {
@@ -73,14 +64,15 @@ var rand = quicklist[Math.floor(random(yyyy/dd+mm) * quicklist.length)].toUpperC
         // if exists but is in the wrong place
         
         input.value = ""; // clear input box
+        let text = "Correcto";
         
         if(c===5) { // if they have all the correct letters
           
-          end('',"Felicidades",matrix,pressn);
+          end('',"<b>" + text.fontsize(5) + "</b>",matrix,pressn);
         } //if
         else if (pressn === 6){ // if they're out of tries
          
-          end('',"La palabra correcta es: " + rand,matrix,pressn);
+          end('',"La palabra correcta es: " + "<b>"+ rand + "</b>",matrix,pressn);
         } //else if
       } //for (check for correctness loop)
       
@@ -114,7 +106,10 @@ var rand = quicklist[Math.floor(random(yyyy/dd+mm) * quicklist.length)].toUpperC
       }
 
       pressn++; // inc number of guesses
-    } else {document.getElementById('smallMsg').innerHTML = "Palabra no existe!";}//if (key = 'enter')
+    } else {
+      document.getElementById('smallMsg').innerHTML = "Palabra no existe!";
+      
+    }//if (key = 'enter')
   } 
 }//input 
 } //gameloop
@@ -127,11 +122,13 @@ function random(seed) {
 }
 var end = function(msg, smallmsg,result,row){
   var utc = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+  var game_no = dayOfYear();
   
-  var graph = utc + encodeURIComponent("\n");
+  var graph = "No " + (game_no-9)+ "   "+utc + encodeURIComponent("\n");
   var yellow_square = String.fromCodePoint(0x1F7E8);
   var green_square = String.fromCodePoint(0x1F7E9);
   var black_square = String.fromCodePoint(0x2B1C);
+ 
   for (i=0;i<row;i++){
     for (j=0;j<=4;j++){
     if (result[i][j]==1)
@@ -142,16 +139,25 @@ var end = function(msg, smallmsg,result,row){
        graph = graph + black_square
     }
     graph = graph + encodeURIComponent("\n");
-    console.log (graph)
+    
     }
     
-
+  
   document.getElementById('msgBox').innerHTML = msg;
   document.getElementById('smallMsg').innerHTML = smallmsg;
   //changeClass(button, "invisible", "visible");
   document.getElementById('guess').readOnly = true;
   document.getElementById('tweet-button').innerHTML = "<a href=\"https://twitter.com/intent/intent/tweet?text="+graph+"\" class=\"twitter-share-button\" data-show-count=\"false\" data-size=\"large\" data-text =" + graph + ">Tweet</a>"
   twttr.widgets.load()
+}
+
+function dayOfYear (){
+  var now = new Date();
+  var start = new Date(now.getFullYear(), 0, 0);
+  var diff = (now - start) + ((start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000);
+  var oneDay = 1000 * 60 * 60 * 24;
+  var day = Math.floor(diff / oneDay);
+  return day;
 }
 
 // reset
